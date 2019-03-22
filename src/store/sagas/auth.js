@@ -1,5 +1,5 @@
 import { call, put, select } from 'redux-saga/effects';
-import { AsyncStorage } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import api from '../../services/api';
 import NavigationService from '../../services/navigation';
 
@@ -7,10 +7,12 @@ import AuthActions from '../ducks/auth';
 
 export function* init() {
   const token = yield call([AsyncStorage, 'getItem'], '@Omni:token');
+  console.tron.log(token);
 
   if (token) {
     yield put(AuthActions.signInSuccess(token));
   }
+
   yield put(AuthActions.initCheckSuccess());
 }
 
