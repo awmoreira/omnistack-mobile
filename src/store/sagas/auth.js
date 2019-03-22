@@ -11,7 +11,6 @@ export function* init() {
   if (token) {
     yield put(AuthActions.signInSuccess(token));
   }
-
   yield put(AuthActions.initCheckSuccess());
 }
 
