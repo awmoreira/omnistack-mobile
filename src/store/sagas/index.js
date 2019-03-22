@@ -16,7 +16,7 @@ import { AuthTypes } from '../ducks/auth';
 
 export default function* rootSaga() {
   return yield all([
-    // init(),
+    init(),
     // fork(getPermissions),
 
     takeLatest(AuthTypes.SIGN_IN_REQUEST, signIn),

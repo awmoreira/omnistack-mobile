@@ -2,9 +2,10 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import './config/StatusBarConfig';
 
+import './config/ReactotronConfig';
 import store from './store';
 
-import App from './app';
+import App from './App';
 
 const Root = () => (
   <Provider store={store}>

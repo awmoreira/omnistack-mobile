@@ -4,11 +4,11 @@ import Main from './pages/Main';
 import SignIn from './pages/SignIn';
 
 export default function createNavigator(isLoggedIn = false) {
-  return createAppContainer(
+  createAppContainer(
     createSwitchNavigator(
       {
-        Main,
         SignIn,
+        Main,
       },
       {
         initialRouteName: isLoggedIn ? 'Main' : 'SignIn',
