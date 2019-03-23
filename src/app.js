@@ -15,9 +15,9 @@ class App extends Component {
     }).isRequired,
   };
 
-  componentDidMount() {
-    AsyncStorage.clear();
-  }
+  // componentDidMount() {
+  //   AsyncStorage.clear();
+  // }
 
   registerService = (ref) => {
     NavigationService.setTopLevelNavigator(ref);
@@ -26,7 +26,7 @@ class App extends Component {
   render() {
     const { auth } = this.props;
 
-    if (auth.authCheked) return null;
+    if (!auth.authChecked) return null;
 
     const Routes = createNavigator(auth.signedIn);
 

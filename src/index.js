@@ -5,7 +5,7 @@ import './config/StatusBarConfig';
 import './config/ReactotronConfig';
 import store from './store';
 
-import App from './App';
+import App from './app';
 
 const Root = () => (
   <Provider store={store}>
