@@ -1,4 +1,5 @@
 import { call, put, select } from 'redux-saga/effects';
+import { ToastActionsCreators } from 'react-native-redux-toast';
 import AsyncStorage from '@react-native-community/async-storage';
 import api from '../../services/api';
 import NavigationService from '../../services/navigation';
@@ -31,7 +32,7 @@ export function* signIn({ email, password }) {
     yield put(AuthActions.signInSuccess(response.data.token));
     NavigationService.navigate('Main');
   } catch (err) {
-    console.log(err);
+    yield put(ToastActionsCreators.displayError('Ops... Tivemos um problema com seu login.'));
   }
 }
 

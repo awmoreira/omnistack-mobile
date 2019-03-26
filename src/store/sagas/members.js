@@ -1,5 +1,5 @@
 import { call, put } from 'redux-saga/effects';
-import { actions as toastrActions } from 'react-redux-toastr';
+import { ToastActionsCreators } from 'react-native-redux-toast';
 import api from '../../services/api';
 
 import MembersActions from '../ducks/members';
@@ -14,21 +14,9 @@ export function* updateMember({ id, roles }) {
   try {
     yield call(api.put, `members/${id}`, { roles: roles.map(role => role.id) });
 
-    yield put(
-      toastrActions.add({
-        type: 'success',
-        title: 'Membro atualizado',
-        message: 'O membro foi atualizado com sucesso.',
-      }),
-    );
+    yield put(ToastActionsCreators.displayInfo('Membro atualizado.'));
   } catch (err) {
-    yield put(
-      toastrActions.add({
-        type: 'error',
-        title: 'Erro ao atualizar membro',
-        message: 'O membro não foi atualizado, por favor tente mais tarde.',
-      }),
-    );
+    yield put(ToastActionsCreators.displayError('Ops... Tivemos um problema.'));
   }
 }
 
@@ -36,20 +24,9 @@ export function* inviteMember({ email }) {
   try {
     yield call(api.post, 'invites', { invites: [email] });
 
-    yield put(
-      toastrActions.add({
-        type: 'success',
-        title: 'Convite enviado',
-        message: 'O convite foi enviado com sucesso.',
-      }),
-    );
+    yield put(ToastActionsCreators.displayInfo('Convite realizado.'));
   } catch (err) {
-    yield put(
-      toastrActions.add({
-        type: 'error',
-        title: 'Erro ao enviar convite',
-        message: 'Por favor tente mais tarde.',
-      }),
-    );
+    console.log(err);
+    yield put(ToastActionsCreators.displayError('Ops... Tivemos um problema.'));
   }
 }

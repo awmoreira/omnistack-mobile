@@ -1,4 +1,5 @@
 import { call, put } from 'redux-saga/effects';
+import { ToastActionsCreators } from 'react-native-redux-toast';
 import AsyncStorage from '@react-native-community/async-storage';
 import api from '../../services/api';
 
@@ -15,9 +16,9 @@ export function* addTeam({ name }) {
     const response = yield call(api.post, 'teams', { name });
 
     yield put(TeamsActions.addTeamSuccess(response.data));
-    yield put(TeamsActions.closeTeamModal());
+    yield put(ToastActionsCreators.displayInfo('Time criado com sucesso.'));
   } catch (err) {
-    console.log(err);
+    yield put(ToastActionsCreators.displayError('Ops... Tivemos um problema.'));
   }
 }
 
